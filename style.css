@@ -1,3 +1,12 @@
+/* Instrument Sans 本地化：避免微信内置浏览器请求 Google Fonts 被墙导致首屏卡住 */
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("assets/fonts/instrument-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root{
   --blue:#002FA7;--blue-lit:#6E8BFF;--ink:#0E0E0E;--ink2:#141414;
@@ -6,7 +15,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--ink);color:#fff;
-  font-family:"Instrument Sans","Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  font-family:"Instrument Sans","PingFang SC","HarmonyOS Sans SC","Noto Sans CJK SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   -webkit-font-smoothing:antialiased;line-height:1.5}
 body.theme-light{background:var(--paper);color:var(--ink)}
 a{color:inherit;text-decoration:none}
@@ -116,9 +125,18 @@ body.theme-dark .proj .tag{color:var(--mute-d)}
 .cap p{margin:0;font-size:15px;line-height:1.75;color:var(--mute-d)}
 
 /* clients */
-.clients{display:flex;flex-direction:column;gap:0;margin-top:40px}
-.client-row{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
-.client-row span{text-align:center;padding:20px 0;font-size:20px;font-weight:500}
+.clients{display:grid;grid-template-columns:repeat(5,1fr);gap:20px 24px;margin-top:48px}
+.client{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px 8px;
+  border-radius:14px;transition:background .35s var(--ease),transform .35s var(--ease)}
+.client .mark{width:58px;height:58px;border-radius:50%;border:1px solid #D9D9D9;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:600;letter-spacing:0;color:#7A7A7A;
+  transition:border-color .32s var(--ease),color .32s var(--ease),background .32s var(--ease),transform .32s var(--ease)}
+.client .cname{font-size:13px;color:var(--mute);letter-spacing:.2px;
+  transition:color .32s var(--ease)}
+.client:hover{background:#F6F6F6;transform:translateY(-2px)}
+.client:hover .mark{border-color:var(--blue);background:var(--blue);color:#fff;transform:scale(1.04)}
+.client:hover .cname{color:var(--ink)}
 
 /* cta */
 .cta{text-align:center;padding-top:150px;padding-bottom:150px}
@@ -213,7 +231,7 @@ body.theme-light .intro .body p{color:#3A3A3A}
   .contact-body{grid-template-columns:1fr;gap:40px}
   .work-grid{grid-template-columns:1fr}
   .work-col.offset{padding-top:0}
-  .client-row{grid-template-columns:repeat(3,1fr)}
+  .clients{grid-template-columns:repeat(3,1fr)}
   .figure .cap{left:48px}
 }
 @media (max-width:760px){
@@ -237,8 +255,8 @@ body.theme-light .intro .body p{color:#3A3A3A}
   .work-grid .proj .cover img{height:auto;aspect-ratio:16/11}
   .section-head{flex-direction:column;align-items:flex-start;margin-bottom:36px}
   .caps{grid-template-columns:1fr}
-  .client-row{grid-template-columns:1fr 1fr}
-  .client-row span{font-size:16px}
+  .clients{grid-template-columns:repeat(2,1fr);gap:12px}
+  .client .mark{width:50px;height:50px;font-size:17px}
   .page-title{flex-direction:column;align-items:flex-start;padding:64px 0 36px}
   .team-row{grid-template-columns:1fr}
   .member img{height:auto;aspect-ratio:4/5}
@@ -285,7 +303,7 @@ body.theme-light .mobile-nav a.active{color:var(--blue)}
   .figure img,.figure video{height:230px}
   .mobile-nav a{font-size:26px}
   .hero p{font-size:15px}
-  .client-row span{font-size:15px;padding:14px 0}
+  .client{padding:14px 6px}
 }
 html{-webkit-text-size-adjust:100%}
 
@@ -352,9 +370,6 @@ html.js .figure img{height:calc(600px + 100px);position:relative;top:-50px;will-
 .pill:hover{transform:translateY(-1px)}
 .cap .num{transition:color .35s var(--ease)}
 .cap:hover .num{color:var(--blue-lit)}
-.client-row span{transition:color .3s var(--ease),transform .3s var(--ease)}
-.client-row span:hover{color:var(--blue)}
-body.theme-dark .client-row span:hover{color:var(--blue-lit)}
 .figure .cap{transition:transform .8s var(--ease)}
 .figure:hover .cap{transform:translateY(-6px)}
 
